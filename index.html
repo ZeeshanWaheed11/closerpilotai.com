@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Closer Pilot AI — Book More Jobs on Autopilot</title>
+<meta content="Closer Pilot AI installs AI phone agents, cold email engines, DM autopilot, and CRM automations that book more jobs for home-service businesses." name="description"/>
+<!-- Tailwind via CDN (no build step) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp .6s ease .05s forwards }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0) } }
+    .card { @apply rounded-3xl border bg-white shadow-sm; }
+    .pill { @apply rounded-full px-3 py-1 border bg-white text-xs sm:text-sm font-medium; }
+  </style>
+<!-- HOW TO USE YOUR REAL LOGO
+       1) Change LOGO_SRC below to your logo file (absolute URL or base64 data).
+       2) Recommended: transparent PNG or SVG with dark-on-light mark. -->
+<script>
+    const LOGO_SRC = "/assets/closer-pilot-logo.png"; // <-- Replace with your actual logo URL (or data URL)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('img[data-logo]').forEach(img => {
+        img.src = LOGO_SRC;
+        img.addEventListener('error', () => {
+          img.outerHTML = "<div class='font-bold text-xl tracking-tight'>Closer Pilot AI</div>";
+        });
+      });
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+
+      // FAQ toggle
+      document.querySelectorAll('[data-faq-btn]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const a = btn.nextElementSibling;
+          const open = a.classList.toggle('hidden') === false;
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
+    });
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-white via-white to-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+<!-- Header -->
+<header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-slate-200/60">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Closer Pilot AI logo" class="h-9 w-auto object-contain" data-logo=""/>
+<span class="sr-only">Closer Pilot AI</span>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="hover:text-slate-700" href="#features">Features</a>
+<a class="hover:text-slate-700" href="#how">How it works</a>
+<a class="hover:text-slate-700" href="#faq">FAQs</a>
+<a class="hover:text-slate-700" href="#contact">Contact</a>
+</nav>
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center justify-center rounded-2xl bg-indigo-600 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-500" href="#contact">
+          Get a custom offer
+        </a>
+</div>
+</div>
+</header>
+<!-- Hero -->
+<section class="relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(65%_50%_at_50%_0%,rgba(99,102,241,0.12)_0%,rgba(255,255,255,0)_70%)]"></div>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+<div class="grid md:grid-cols-2 gap-10 items-center">
+<div class="fade-up">
+<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+            AI that books you jobs while you sleep.
+          </h1>
+<p class="mt-4 text-slate-700 text-lg">
+            Closer Pilot AI installs in your workflow and turns cold prospects into scheduled calls, demos, and paid jobs for home-service businesses.
+            No rate card on the site—every offer is tailored to your business.
+          </p>
+<div class="mt-6 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 text-white px-5 py-3 text-sm font-semibold shadow-sm hover:bg-indigo-500" href="#contact">
+              Build my custom offer
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</a>
+<a class="px-5 py-3 rounded-2xl border border-slate-300 hover:bg-white shadow-sm text-sm font-semibold" href="#features">
+              See features
+            </a>
+<!-- New Whop CTA -->
+</div>
+<ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> No long-term contract</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Use your number or ours</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> White-label friendly</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Done-for-you setup</li>
+</ul>
+</div>
+<!-- Right card -->
+<div class="relative fade-up">
+<div class="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-indigo-100 via-white to-purple-100 blur-2xl"></div>
+<div class="relative rounded-3xl border bg-white shadow-xl">
+<div class="p-6 border-b">
+<div class="text-xl font-semibold">Your AI Revenue Stack</div>
+</div>
+<div class="p-6 grid sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-2xl border bg-white">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.78 19.78 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.78 19.78 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.66 12.66 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.66 12.66 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+</svg>
+<div class="font-semibold">AI Phone Agent</div>
+</div>
+<p class="text-sm text-slate-600 mt-1">Answers, qualifies, and books jobs 24/7.</p>
+</div>
+<div class="p-4 rounded-2xl border bg-white">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path>
+</svg>
+<div class="font-semibold">Cold Email Engine</div>
+</div>
+<p class="text-sm text-slate-600 mt-1">Finds leads and lands replies that convert.</p>
+</div>
+<div class="p-4 rounded-2xl border bg-white">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+</svg>
+<div class="font-semibold">DM Autopilot</div>
+</div>
+<p class="text-sm text-slate-600 mt-1">IG &amp; FB inbox that actually sells.</p>
+</div>
+<div class="p-4 rounded-2xl border bg-white">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M8 6h8M6 8v8M16 8v8M8 18h8"></path>
+</svg>
+<div class="font-semibold">CRM Automations</div>
+</div>
+<p class="text-sm text-slate-600 mt-1">Pipeline, follow-up, reviews, and billing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Bar -->
+<section class="py-6">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="text-sm font-semibold text-slate-600">Plug into tools you already use</div>
+<div class="flex flex-wrap items-center gap-3 sm:gap-6 opacity-80">
+<span class="pill">GoHighLevel</span>
+<span class="pill">Twilio</span>
+<span class="pill">Air.ai</span>
+<span class="pill">Vapi</span>
+<span class="pill">Bland.ai</span>
+<span class="pill">Zoom</span>
+<span class="pill">Stripe</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="py-16" id="features">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold">Everything you need to book more jobs</h2>
+<div class="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+<div class="card">
+<div class="p-6 border-b">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 8V4m-6 8H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2h-2M8 4h8"></path>
+<circle cx="9" cy="13" r="1"></circle><circle cx="15" cy="13" r="1"></circle>
+</svg>
+<div class="text-lg font-semibold">AI Phone Agents</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-slate-600 text-sm">Pick up every call, pre-qualify, price-check, and schedule in your calendar.</p>
+<ul class="mt-3 space-y-1 text-sm">
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Natural voices</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Knows your offers</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Books on your calendar</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="p-6 border-b">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path>
+</svg>
+<div class="text-lg font-semibold">AI Cold Email</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-slate-600 text-sm">Prospecting that actually lands replies—lead sourcing, warm-up, sequences, and inbox management.</p>
+<ul class="mt-3 space-y-1 text-sm">
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Lead lists</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Auto-personalization</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Auto follow-up</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="p-6 border-b">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+</svg>
+<div class="text-lg font-semibold">Social DM Autopilot</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-slate-600 text-sm">IG/FB inbox that qualifies and routes to closing without you babysitting.</p>
+<ul class="mt-3 space-y-1 text-sm">
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> One question at a time</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Human handoff</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Spam-safe</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="p-6 border-b">
+<div class="flex items-center gap-2">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M8 6h8M6 8v8M16 8v8M8 18h8"></path>
+</svg>
+<div class="text-lg font-semibold">CRM + Automations</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-slate-600 text-sm">Pipeline, reviews, payments, reminders, and missed-call text-backs. All done-for-you.</p>
+<ul class="mt-3 space-y-1 text-sm">
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> White-label ready</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Reporting dashboards</li>
+<li class="flex items-center gap-2"><svg class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19 21 7l-1.4-1.4Z"></path></svg> Review booster</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How it works -->
+<section class="py-16 bg-white" id="how">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold">How it works</h2>
+<div class="mt-8 grid md:grid-cols-3 gap-6">
+<div class="p-6 rounded-3xl border bg-white">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 7h18M3 12h18M3 17h18"></path>
+</svg>
+<div class="mt-3 font-semibold">1. Audit &amp; Plan</div>
+<p class="text-sm text-slate-600 mt-1">Quick discovery to learn your offers, pricing rules, and calendar.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2v20M2 12h20"></path>
+</svg>
+<div class="mt-3 font-semibold">2. Build &amp; Train</div>
+<p class="text-sm text-slate-600 mt-1">We connect your CRM, phone, email, and DM playbooks and train your agent.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m5 12 5 5L20 7"></path>
+</svg>
+<div class="mt-3 font-semibold">3. Launch &amp; Scale</div>
+<p class="text-sm text-slate-600 mt-1">Go live in days. We monitor, optimize, and scale what works.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Outcomes -->
+<section class="py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold">Outcomes we aim for</h2>
+<div class="mt-8 grid md:grid-cols-3 gap-6">
+<div class="card">
+<div class="p-6 border-b"><div class="text-lg font-semibold">More booked jobs</div></div>
+<div class="p-6">
+<div class="text-4xl font-extrabold">+30%</div>
+<p class="text-sm text-slate-600 mt-2">Turn missed calls and ignored emails into scheduled work.</p>
+</div>
+</div>
+<div class="card">
+<div class="p-6 border-b"><div class="text-lg font-semibold">Lower CAC</div></div>
+<div class="p-6">
+<div class="text-4xl font-extrabold">-25%</div>
+<p class="text-sm text-slate-600 mt-2">Automations follow up faster and cheaper than humans.</p>
+</div>
+</div>
+<div class="card">
+<div class="p-6 border-b"><div class="text-lg font-semibold">Owner time back</div></div>
+<div class="p-6">
+<div class="text-4xl font-extrabold">+10h/wk</div>
+<p class="text-sm text-slate-600 mt-2">Focus on fulfillment—let the robots chase leads.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQs -->
+<section class="py-16 bg-white" id="faq">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold">FAQs</h2>
+<div class="mt-8 grid md:grid-cols-2 gap-6">
+<div class="p-6 rounded-3xl border bg-white">
+<button aria-expanded="false" class="w-full text-left font-semibold flex items-center justify-between" data-faq-btn="">
+            Do you publish prices? <span class="text-slate-500">+</span>
+</button>
+<p class="text-sm text-slate-600 mt-2 hidden">No. We build a custom offer per business so the value is obvious and the scope fits your stack.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white">
+<button aria-expanded="false" class="w-full text-left font-semibold flex items-center justify-between" data-faq-btn="">
+            Can you use my phone number? <span class="text-slate-500">+</span>
+</button>
+<p class="text-sm text-slate-600 mt-2 hidden">Yes—port or forward. Or we can provide a new number.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white">
+<button aria-expanded="false" class="w-full text-left font-semibold flex items-center justify-between" data-faq-btn="">
+            How fast is setup? <span class="text-slate-500">+</span>
+</button>
+<p class="text-sm text-slate-600 mt-2 hidden">Most stacks launch in days, not weeks, depending on integrations and assets.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white">
+<button aria-expanded="false" class="w-full text-left font-semibold flex items-center justify-between" data-faq-btn="">
+            Can you white-label? <span class="text-slate-500">+</span>
+</button>
+<p class="text-sm text-slate-600 mt-2 hidden">Yep. We can live inside your CRM as your team.</p>
+</div>
+<div class="p-6 rounded-3xl border bg-white md:col-span-2">
+<button aria-expanded="false" class="w-full text-left font-semibold flex items-center justify-between" data-faq-btn="">
+            What if it doesn’t pay for itself? <span class="text-slate-500">+</span>
+</button>
+<p class="text-sm text-slate-600 mt-2 hidden">We’ll keep working until it does—terms in the agreement.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA & Email-to-Micah Form (FormSubmit) -->
+<section class="py-16 relative overflow-hidden" id="contact"><div class="absolute inset-0 bg-[radial-gradient(65%_50%_at_50%_0%,rgba(99,102,241,0.12)_0%,rgba(255,255,255,0)_70%)] pointer-events-none"></div>
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-3xl font-extrabold">Ready for a tailored offer?</h2>
+<p class="mt-3 text-slate-700">Tell us your service, city, and goal. We’ll design a package just for you—no public pricing.</p>
+<div class="mt-6 flex items-center justify-center gap-3">
+<!-- Prominent Whop button -->
+</div>
+<!-- FormSubmit: emails go to micahdusseau@closerpilotai.com -->
+<div class="rounded-xl border border-green-200 bg-green-50 text-green-800 px-4 py-3 text-sm shadow-sm mb-6" id="contact-success" style="display:none;"><strong class="font-semibold">Thanks—got your request.</strong> We’ll reach out within 24 hours with next steps.</div>
+<script>
+  (function() {
+    try {
+      var params = new URLSearchParams(window.location.search || "");
+      if (params.get("submitted") === "true") {
+        var el = document.getElementById("contact-success");
+        if (el) {
+          el.style.display = "block";
+          // Optional: scroll into view smoothly
+          setTimeout(function(){ el.scrollIntoView({behavior:"smooth", block:"start"}); }, 50);
+        }
+      }
+    } catch(e) {}
+  })();
+</script>
+<iframe
+    src="https://api.leadconnectorhq.com/widget/form/AQ8BeKT9iv5sFB7OsrAl"
+    style="width:100%;height:100%;border:none;border-radius:3px"
+    id="inline-AQ8BeKT9iv5sFB7OsrAl" 
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Form 2"
+    data-height="851"
+    data-layout-iframe-id="inline-AQ8BeKT9iv5sFB7OsrAl"
+    data-form-id="AQ8BeKT9iv5sFB7OsrAl"
+    title="Form 2"
+        >
+</iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<div class="mt-8 text-sm text-slate-600" id="thank-you"></div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-10 border-t bg-white/60">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-6 items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Closer Pilot AI" class="h-7 w-auto object-contain" data-logo=""/>
+<span class="text-sm text-slate-600">© <span id="year"></span> Closer Pilot AI LLC</span>
+</div>
+<div class="text-sm text-slate-600 flex gap-4">
+<a class="hover:text-slate-800" href="#">Terms</a>
+<a class="hover:text-slate-800" href="#">Privacy</a>
+<a class="hover:text-slate-800" href="#contact">Contact</a>
+</div>
+</div>
+</footer>
+</body>
+</html>
