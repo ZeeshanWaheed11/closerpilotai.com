@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://closerpilotai.com/sitemap.xml
+
+# Block access to sensitive files
+Disallow: /assets/
+Disallow: /*.pdf
+Disallow: /*.zip
+Disallow: /*.m4a
+
+# Allow specific assets that should be crawlable
+Allow: /assets/closer-pilot-logo.jpg
+
+# Common crawl directives
+Crawl-delay: 1
