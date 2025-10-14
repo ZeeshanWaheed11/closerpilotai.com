@@ -37,39 +37,67 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Closer Pilot AI",
-  "url": "https://closerpilotai.com",
-  "logo": "https://cdn.shopify.com/s/files/1/0780/0376/5469/files/closer_pilot_logo_png.png?v=1757707428",
-  "description": "AI-powered sales automation for home-service businesses",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "micahdusseau@closerpilotai.com",
-    "contactType": "Customer Service"
-  },
-  "service": {
-    "@type": "Service",
-    "name": "AI Sales Automation",
-    "description": "AI phone agents, cold email engines, DM autopilot, and CRM automations for home-service businesses",
-    "provider": {
+  "@graph": [
+    {
       "@type": "Organization",
-      "name": "Closer Pilot AI"
+      "@id": "https://closerpilotai.com/#organization",
+      "name": "Closer Pilot AI",
+      "url": "https://closerpilotai.com/",
+      "logo": "https://cdn.shopify.com/s/files/1/0780/0376/5469/files/closer_pilot_logo_png.png?v=1757707428",
+      "description": "AI-powered sales automation for home-service businesses.",
+      "email": "micahdusseau@closerpilotai.com",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "micahdusseau@closerpilotai.com",
+          "contactType": "customer service",
+          "availableLanguage": ["English"]
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Closer Pilot AI Automations",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://closerpilotai.com/#service",
+              "name": "AI Sales Automation",
+              "description": "AI phone agents, cold email engines, DM autopilot, and CRM automations for home-service businesses.",
+              "provider": {
+                "@id": "https://closerpilotai.com/#organization"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://closerpilotai.com/#website",
+      "name": "Closer Pilot AI",
+      "url": "https://closerpilotai.com/",
+      "publisher": {
+        "@id": "https://closerpilotai.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "ContactAction",
+        "target": "https://closerpilotai.com/#contact",
+        "name": "Book a discovery call"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://closerpilotai.com/#service",
+      "name": "AI Sales Automation",
+      "serviceType": "AI-driven sales enablement",
+      "provider": {
+        "@id": "https://closerpilotai.com/#organization"
+      },
+      "areaServed": "United States"
     }
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Closer Pilot AI",
-  "url": "https://closerpilotai.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://closerpilotai.com/#contact",
-    "query-input": "required name=search_term_string"
-  }
+  ]
 }
 </script>
 

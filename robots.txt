@@ -1,17 +1,14 @@
+# robots.txt — updated 2025-10-14
 User-agent: *
 Allow: /
 
+# Block large download formats
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.m4a$
+
+# Crawl guidance
+Crawl-delay: 1
+
 # Sitemap
 Sitemap: https://closerpilotai.com/sitemap.xml
-
-# Block access to sensitive files
-Disallow: /assets/
-Disallow: /*.pdf
-Disallow: /*.zip
-Disallow: /*.m4a
-
-# Allow specific assets that should be crawlable
-Allow: /assets/closer-pilot-logo.jpg
-
-# Common crawl directives
-Crawl-delay: 1
