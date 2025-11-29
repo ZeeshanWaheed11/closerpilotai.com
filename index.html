@@ -145,34 +145,78 @@
         const valueInput = document.getElementById('calc-value');
         const missedInput = document.getElementById('calc-missed');
         const closeInput = document.getElementById('calc-close-rate');
+        const costInput = document.getElementById('calc-cost');
         const lostEl = document.getElementById('calc-monthly-lost');
         const roiEl = document.getElementById('calc-roi');
         const calcBtn = document.getElementById('calc-submit');
-        const formatCurrency = (num) =>
-          num.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
-        const update = () => {
-          const avg = parseFloat(valueInput?.value || '0') || 0;
-          const missed = parseFloat(missedInput?.value || '0') || 0;
-          const closeRate = parseFloat(closeInput?.value || '0') || 0;
-          const weeklyLost = avg * missed * (closeRate / 100);
-          const monthlyLost = Math.max(0, weeklyLost * 4); // simple: 4 weeks to a month
-          const programCost = 0; // no cost factored in
-          const roi = monthlyLost > 0 && programCost > 0 ? ((monthlyLost - programCost) / programCost) * 100 : null;
+        const errors = {
+          value: document.querySelector('[data-calc-error="value"]'),
+          missed: document.querySelector('[data-calc-error="missed"]'),
+          close: document.querySelector('[data-calc-error="close"]'),
+          cost: document.querySelector('[data-calc-error="cost"]')
+        };
+        const formatCurrency = (num) => num.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+        const clearErrors = () => {
+          Object.values(errors).forEach(el => {
+            if (el) el.classList.add('hidden'), el.textContent = '';
+          });
+          [valueInput, missedInput, closeInput, costInput].forEach(el => el?.classList.remove('border-red-500'));
+        };
+        const showError = (field, message) => {
+          if (errors[field]) {
+            errors[field].textContent = message;
+            errors[field].classList.remove('hidden');
+          }
+          const map = { value: valueInput, missed: missedInput, close: closeInput, cost: costInput };
+          if (map[field]) map[field].classList.add('border-red-500');
+        };
+        const validate = () => {
+          clearErrors();
+          let ok = true;
+          const fields = [
+            { el: valueInput, key: 'value', label: 'Average client value' },
+            { el: missedInput, key: 'missed', label: 'Missed calls per week' },
+            { el: closeInput, key: 'close', label: 'Close rate' },
+            { el: costInput, key: 'cost', label: 'Service cost' }
+          ];
+          const values = {};
+          fields.forEach(({ el, key, label }) => {
+            const raw = el?.value ?? '';
+            const num = parseFloat(raw);
+            if (raw === '' || isNaN(num)) {
+              showError(key, `${label} is required.`);
+              ok = false;
+              return;
+            }
+            if (num < 0) {
+              showError(key, `${label} cannot be negative.`);
+              ok = false;
+              return;
+            }
+            if (key === 'cost' && num === 0) {
+              showError(key, `${label} must be greater than zero.`);
+              ok = false;
+              return;
+            }
+            values[key] = num;
+          });
+          return ok ? values : null;
+        };
+        const calculate = () => {
+          const vals = validate();
+          if (!vals) return;
+          const weeklyLost = vals.value * vals.missed * (vals.close / 100);
+          const monthlyLost = Math.max(0, weeklyLost * 4.33); // average weeks per month
           if (lostEl) lostEl.textContent = formatCurrency(monthlyLost);
           if (roiEl) {
-            if (roi === null) {
-              roiEl.textContent = 'N/A';
-              roiEl.classList.remove('text-emerald-600', 'text-red-600');
-            } else {
-              roiEl.textContent = `${roi.toFixed(2)}%`;
-              roiEl.classList.toggle('text-emerald-600', roi >= 0);
-              roiEl.classList.toggle('text-red-600', roi < 0);
-            }
+            const roi = ((monthlyLost - vals.cost) / vals.cost) * 100;
+            roiEl.textContent = `${roi.toFixed(2)}%`;
+            roiEl.classList.toggle('text-emerald-600', roi >= 0);
+            roiEl.classList.toggle('text-red-600', roi < 0);
           }
         };
-        [valueInput, missedInput, closeInput].forEach(input => input?.addEventListener('input', update));
-        if (calcBtn) calcBtn.addEventListener('click', e => { e.preventDefault(); update(); });
-        update();
+        [valueInput, missedInput, closeInput, costInput].forEach(input => input?.addEventListener('input', clearErrors));
+        if (calcBtn) calcBtn.addEventListener('click', e => { e.preventDefault(); calculate(); });
       }
     });
   </script>
@@ -422,14 +466,22 @@
 <div>
 <label class="block text-sm font-semibold text-slate-800" for="calc-value">Average Client Value</label>
 <input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-value" min="0" name="value" step="50" type="number" value="0"/>
+<p class="mt-1 text-xs text-red-600 hidden" data-calc-error="value"></p>
 </div>
 <div>
 <label class="block text-sm font-semibold text-slate-800" for="calc-missed">Missed Calls per Week</label>
 <input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-missed" min="0" name="missed" step="1" type="number" value="0"/>
+<p class="mt-1 text-xs text-red-600 hidden" data-calc-error="missed"></p>
 </div>
 <div>
 <label class="block text-sm font-semibold text-slate-800" for="calc-close-rate">Average Close Rate (%)</label>
 <input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-close-rate" min="0" name="close" step="0.5" type="number" value="0"/>
+<p class="mt-1 text-xs text-red-600 hidden" data-calc-error="close"></p>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-800" for="calc-cost">Your Monthly Service Cost</label>
+<input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-cost" min="0" name="cost" step="1" type="number" value="0"/>
+<p class="mt-1 text-xs text-red-600 hidden" data-calc-error="cost"></p>
 </div>
 <button class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 text-white px-5 py-3 text-sm font-semibold shadow-sm hover:bg-indigo-500 transition" id="calc-submit" type="button">
               Calculate
@@ -444,7 +496,7 @@
 <span class="font-semibold text-slate-800">Potential ROI</span>
 <span class="text-lg font-extrabold" id="calc-roi">N/A</span>
 </div>
-<p class="text-xs text-slate-500">We take your weekly missed-call revenue and multiply by 4 to estimate a month.</p>
+<p class="text-xs text-slate-500">We take your weekly missed-call revenue, multiply by 4.33 for a month, and compare against your monthly service cost.</p>
 </div>
 </div>
 <div class="p-4 md:p-6 lg:p-8">
