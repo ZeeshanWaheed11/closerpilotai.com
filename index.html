@@ -138,6 +138,42 @@
           btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
       });
+
+      // Lost revenue calculator
+      const calcForm = document.getElementById('lost-revenue-form');
+      if (calcForm) {
+        const valueInput = document.getElementById('calc-value');
+        const missedInput = document.getElementById('calc-missed');
+        const closeInput = document.getElementById('calc-close-rate');
+        const lostEl = document.getElementById('calc-monthly-lost');
+        const roiEl = document.getElementById('calc-roi');
+        const calcBtn = document.getElementById('calc-submit');
+        const formatCurrency = (num) =>
+          num.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+        const update = () => {
+          const avg = parseFloat(valueInput?.value || '0') || 0;
+          const missed = parseFloat(missedInput?.value || '0') || 0;
+          const closeRate = parseFloat(closeInput?.value || '0') || 0;
+          const weeklyLost = avg * missed * (closeRate / 100);
+          const monthlyLost = Math.max(0, weeklyLost * 4); // simple: 4 weeks to a month
+          const programCost = 0; // no cost factored in
+          const roi = monthlyLost > 0 && programCost > 0 ? ((monthlyLost - programCost) / programCost) * 100 : null;
+          if (lostEl) lostEl.textContent = formatCurrency(monthlyLost);
+          if (roiEl) {
+            if (roi === null) {
+              roiEl.textContent = 'N/A';
+              roiEl.classList.remove('text-emerald-600', 'text-red-600');
+            } else {
+              roiEl.textContent = `${roi.toFixed(2)}%`;
+              roiEl.classList.toggle('text-emerald-600', roi >= 0);
+              roiEl.classList.toggle('text-red-600', roi < 0);
+            }
+          }
+        };
+        [valueInput, missedInput, closeInput].forEach(input => input?.addEventListener('input', update));
+        if (calcBtn) calcBtn.addEventListener('click', e => { e.preventDefault(); update(); });
+        update();
+      }
     });
   </script>
 </head>
@@ -370,6 +406,65 @@
 </svg>
 <div class="mt-3 font-semibold">3. Launch &amp; Scale</div>
 <p class="text-sm text-slate-600 mt-1">Go live in days. We monitor, optimize, and scale what works.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Calculator -->
+<section class="py-16 bg-gradient-to-b from-white via-white to-slate-50" id="calculator">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-2 gap-10 items-start">
+<div class="card p-8 shadow-lg">
+<p class="text-xs font-semibold uppercase text-indigo-600 tracking-wide">Lost revenue calculator</p>
+<h3 class="mt-2 text-3xl font-bold">What missed calls are costing you</h3>
+<p class="mt-2 text-sm text-slate-600">Drop in your averages to see how much money is slipping away each month.</p>
+<form class="mt-6 space-y-4" id="lost-revenue-form">
+<div>
+<label class="block text-sm font-semibold text-slate-800" for="calc-value">Average Client Value</label>
+<input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-value" min="0" name="value" step="50" type="number" value="0"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-800" for="calc-missed">Missed Calls per Week</label>
+<input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-missed" min="0" name="missed" step="1" type="number" value="0"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-800" for="calc-close-rate">Average Close Rate (%)</label>
+<input class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="calc-close-rate" min="0" name="close" step="0.5" type="number" value="0"/>
+</div>
+<button class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 text-white px-5 py-3 text-sm font-semibold shadow-sm hover:bg-indigo-500 transition" id="calc-submit" type="button">
+              Calculate
+            </button>
+</form>
+<div class="mt-6 border-t border-slate-200 pt-6 space-y-3">
+<div class="flex items-center justify-between text-sm">
+<span class="font-semibold text-slate-800">Monthly $$$ Left on Table</span>
+<span class="text-lg font-extrabold text-emerald-600" id="calc-monthly-lost">$0.00</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="font-semibold text-slate-800">Potential ROI</span>
+<span class="text-lg font-extrabold" id="calc-roi">N/A</span>
+</div>
+<p class="text-xs text-slate-500">We take your weekly missed-call revenue and multiply by 4 to estimate a month.</p>
+</div>
+</div>
+<div class="p-4 md:p-6 lg:p-8">
+<h3 class="text-3xl font-bold leading-tight">Estimate how much your missed calls are costing you</h3>
+<p class="mt-3 text-slate-600 text-sm md:text-base">Most service businesses leak revenue because nobody answers every call. This quick calculator shows what consistent follow-ups and instant text-backs can unlock.</p>
+<ul class="mt-6 space-y-3 text-sm text-slate-700">
+<li class="flex items-start gap-3"><svg class="h-5 w-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewbox="0 0 24 24"><path d="m9 16.2-3.2-3.2-1.4 1.4L9 19l10-10-1.4-1.4z"></path></svg> Enter the average value of a client you win.</li>
+<li class="flex items-start gap-3"><svg class="h-5 w-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewbox="0 0 24 24"><path d="m9 16.2-3.2-3.2-1.4 1.4L9 19l10-10-1.4-1.4z"></path></svg> Estimate how many calls, texts, or form fills you miss weekly.</li>
+<li class="flex items-start gap-3"><svg class="h-5 w-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewbox="0 0 24 24"><path d="m9 16.2-3.2-3.2-1.4 1.4L9 19l10-10-1.4-1.4z"></path></svg> Add your close rate to see lost revenue and ROI.</li>
+<li class="flex items-start gap-3"><svg class="h-5 w-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewbox="0 0 24 24"><path d="m9 16.2-3.2-3.2-1.4 1.4L9 19l10-10-1.4-1.4z"></path></svg> Hit calculate and we'll show what a done-for-you follow-up engine can recover.</li>
+</ul>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 text-white px-5 py-3 text-sm font-semibold shadow-sm hover:bg-indigo-500" href="#contact">
+              Schedule a custom demo
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</a>
+<a class="px-5 py-3 rounded-2xl border border-slate-300 hover:bg-white shadow-sm text-sm font-semibold" href="#features">See everything we automate</a>
+</div>
 </div>
 </div>
 </div>
